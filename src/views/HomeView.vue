@@ -1,18 +1,7 @@
 <template>
-  <HelloWorld />
+  <ListTasks></ListTasks>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-// Components
-import HelloWorld from '../components/HelloWorld.vue';
-
-export default defineComponent({
-  name: 'HomeView',
-
-  components: {
-    HelloWorld,
-  },
-});
+<script setup>
+  import ListTasks from '@/components/ListTasks.vue';
 </script>
