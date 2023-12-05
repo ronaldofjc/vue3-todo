@@ -31,7 +31,7 @@
 
             <v-list>
               <v-list-item value="1">
-                <v-list-item-title>Editar</v-list-item-title>
+                <v-list-item-title @click="toggle">Editar</v-list-item-title>
               </v-list-item>
               <v-list-item value="2">
                 <v-list-item-title>Excluir</v-list-item-title>
@@ -41,14 +41,22 @@
         </template>
       </v-list-item>
     </v-list>
+    <DialogTaskFields :dialog="showDialogTaskFields" @toggle="toggle" />
   </div>
 </template>
 
 <script setup>
-  import { defineProps } from 'vue'
+  import { defineProps, ref } from 'vue'
+  import DialogTaskFields from '@/components/DialogTaskFields.vue'
 
   const props = defineProps({
     tasks: Object
   })
+
+  const showDialogTaskFields = ref(false)
+
+  const toggle = () => {
+    showDialogTaskFields.value = !showDialogTaskFields.value
+  }
   
 </script>
