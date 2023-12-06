@@ -3,7 +3,8 @@
     <v-dialog
       v-model="props.dialog"
       persistent
-      width="auto"
+      min-width="400"
+      max-width="700"
     >
       <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -17,9 +18,12 @@
       </template> -->
       <v-card>
         <v-card-title class="text-h5">
-          Use Google's location service?
+          Edit Task
         </v-card-title>
-        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+        <v-card-text>
+          <v-text-field v-model="props.task.title" label="Title"></v-text-field>
+          <v-text-field v-model="props.task.description" label="Description"></v-text-field>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
@@ -27,14 +31,7 @@
             text
             @click="$emit('toggle')"
           >
-            Disagree
-          </v-btn>
-          <v-btn
-            color="green darken-1"
-            text
-            @click="$emit('toggle')"
-          >
-            Agree
+            Salvar
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -46,7 +43,8 @@
   import { defineProps } from 'vue'
 
   const props = defineProps({
-    dialog: Boolean
+    dialog: Boolean,
+    task: Object
   })
 
 </script>
