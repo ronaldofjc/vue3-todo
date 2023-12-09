@@ -30,10 +30,10 @@
             </template>
 
             <v-list>
-              <v-list-item value="1">
-                <v-list-item-title @click="toggle(index)">Editar</v-list-item-title>
+              <v-list-item value="1" @click="toggleEdit(index)">
+                <v-list-item-title>Editar</v-list-item-title>
               </v-list-item>
-              <v-list-item value="2">
+              <v-list-item value="2" @click="toggleDelete(index)">
                 <v-list-item-title>Excluir</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -41,13 +41,15 @@
         </template>
       </v-list-item>
     </v-list>
-    <DialogTaskFields :dialog="showDialogTaskFields" @toggle="toggle" :task="tasks[indexTaskSelected]" />
+    <DialogTaskFields :dialog="showDialogTaskFields" @toggle="toggleEdit" :task="tasks[indexTaskSelected]" />
+    <DialogDelete :dialog="showDialogDelete" @toggleDelete="toggleDelete" @deleteTask="deleteTask" />
   </div>
 </template>
 
 <script setup>
   import { defineProps, ref } from 'vue'
   import DialogTaskFields from '@/components/DialogTaskFields.vue'
+  import DialogDelete from '@/components/DialogDelete.vue'
 
   const props = defineProps({
     tasks: Object
@@ -56,8 +58,19 @@
   const showDialogTaskFields = ref(false)
   const indexTaskSelected = ref(0)
 
-  const toggle = (index) => {
+  const toggleEdit = (index) => {
     showDialogTaskFields.value = !showDialogTaskFields.value
     if (index != null) indexTaskSelected.value = index
+  }
+
+  const showDialogDelete = ref(false)
+  const toggleDelete = (index) => {
+    showDialogDelete.value = !showDialogDelete.value
+    if (index != null) indexTaskSelected.value = index
+  }
+
+  const deleteTask = () => {
+    props.tasks.splice(indexTaskSelected.value, 1)
+    toggleDelete()
   }
 </script>
