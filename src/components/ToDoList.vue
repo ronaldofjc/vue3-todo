@@ -6,7 +6,7 @@
     @keyup.enter="taskStore.addTask"
   ></v-text-field>
 
-  <ListTasks :tasks="taskStore.tasks" />
+  <ListTasks/>
 </template>
 
 <script setup>

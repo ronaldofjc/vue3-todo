@@ -1,21 +1,11 @@
 <template>
   <div>
     <v-dialog
-      v-model="props.dialog"
+      v-model="taskStore.showDialogDelete"
       persistent
       min-width="400"
       max-width="700"
-    >
-      <!-- <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Open Dialog
-        </v-btn>
-      </template> -->
+    >      
       <v-card>
         <v-card-title class="text-h5">
           Delete Task
@@ -28,14 +18,14 @@
           <v-btn
             color="green darken-1"
             text
-            @click="$emit('toggleDelete')"
+            @click="taskStore.toggleDelete"
           >
             Não
           </v-btn>
           <v-btn
             color="green darken-1"
             text
-            @click="$emit('deleteTask')"
+            @click="taskStore.deleteTask"
           >
             Sim
           </v-btn>
@@ -47,6 +37,9 @@
 
 <script setup>
   import { defineProps } from 'vue'
+  import { useTaskStore } from '@/store/task'
+
+  const taskStore = useTaskStore()
 
   const props = defineProps({
     dialog: Boolean,

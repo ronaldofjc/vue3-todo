@@ -4,7 +4,7 @@
       <v-list-subheader>General</v-list-subheader>
 
       <v-list-item 
-        v-for="task, index in props.tasks"
+        v-for="task, index in taskStore.tasks"
         :key="index"
         :value="index"
       >
@@ -30,10 +30,10 @@
             </template>
 
             <v-list>
-              <v-list-item value="1" @click="toggleEdit(index)">
+              <v-list-item value="1" @click="taskStore.toggleEdit(index)">
                 <v-list-item-title>Editar</v-list-item-title>
               </v-list-item>
-              <v-list-item value="2" @click="toggleDelete(index)">
+              <v-list-item value="2" @click="taskStore.toggleDelete(index)">
                 <v-list-item-title>Excluir</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -41,36 +41,17 @@
         </template>
       </v-list-item>
     </v-list>
-    <DialogTaskFields :dialog="showDialogTaskFields" @toggle="toggleEdit" :task="tasks[indexTaskSelected]" />
-    <DialogDelete :dialog="showDialogDelete" @toggleDelete="toggleDelete" @deleteTask="deleteTask" />
+    <DialogTaskFields 
+      :task="taskStore.tasks[taskStore.indexTaskSelected]" 
+    />
+    <DialogDelete/>
   </div>
 </template>
 
 <script setup>
-  import { defineProps, ref } from 'vue'
   import DialogTaskFields from '@/components/DialogTaskFields.vue'
   import DialogDelete from '@/components/DialogDelete.vue'
+  import { useTaskStore } from '@/store/task'
 
-  const props = defineProps({
-    tasks: Object
-  })
-
-  const showDialogTaskFields = ref(false)
-  const indexTaskSelected = ref(0)
-
-  const toggleEdit = (index) => {
-    showDialogTaskFields.value = !showDialogTaskFields.value
-    if (index != null) indexTaskSelected.value = index
-  }
-
-  const showDialogDelete = ref(false)
-  const toggleDelete = (index) => {
-    showDialogDelete.value = !showDialogDelete.value
-    if (index != null) indexTaskSelected.value = index
-  }
-
-  const deleteTask = () => {
-    props.tasks.splice(indexTaskSelected.value, 1)
-    toggleDelete()
-  }
+  const taskStore = useTaskStore()
 </script>
