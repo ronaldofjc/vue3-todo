@@ -1,21 +1,11 @@
 <template>
   <div>
     <v-dialog
-      v-model="props.dialog"
+      v-model="taskStore.showDialogTaskFields"
       persistent
       min-width="400"
       max-width="700"
     >
-      <!-- <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Open Dialog
-        </v-btn>
-      </template> -->
       <v-card>
         <v-card-title class="text-h5">
           Edit Task
@@ -29,7 +19,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="$emit('toggle')"
+            @click="taskStore.toggleEdit()"
           >
             Salvar
           </v-btn>
@@ -41,9 +31,11 @@
 
 <script setup>
   import { defineProps } from 'vue'
+  import { useTaskStore } from '@/store/task'
+
+  const taskStore = useTaskStore()
 
   const props = defineProps({
-    dialog: Boolean,
     task: Object
   })
 

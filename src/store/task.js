@@ -12,7 +12,10 @@ export const useTaskStore = defineStore('task', {
         description: "Estudar Gon com Gin"
       }
     ],
-    titleTaskCreating: "" 
+    titleTaskCreating: "",
+    showDialogDelete: false,
+    indexTaskSelected: 0,
+    showDialogTaskFields: false
   }),
   getters: {
     double: state => state.count * 2,
@@ -23,6 +26,18 @@ export const useTaskStore = defineStore('task', {
         title: this.titleTaskCreating
       })
       this.titleTaskCreating = ""
+    },
+    toggleDelete(index) {
+      this.showDialogDelete = !this.showDialogDelete
+      if (index != null) this.indexTaskSelected = index
+    },
+    deleteTask() {
+      this.tasks.splice(this.indexTaskSelected, 1)
+      this.toggleDelete()
+    },
+    toggleEdit(index) {
+      this.showDialogTaskFields = !this.showDialogTaskFields
+      if (index != null) this.indexTaskSelected = index
     }
   },
 })
