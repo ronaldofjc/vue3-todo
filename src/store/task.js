@@ -2,16 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useTaskStore = defineStore('task', {
   state: () => ({ 
-    tasks: [
-      {
-        title: "Estudar Vue",
-        description: "Estudar vue com vuetify"
-      },
-      {
-        title: "Estudar Golang",
-        description: "Estudar Gon com Gin"
-      }
-    ],
+    tasks: [ ],
     titleTaskCreating: "",
     showDialogDelete: false,
     indexTaskSelected: 0,
@@ -44,6 +35,10 @@ export const useTaskStore = defineStore('task', {
     },
     saveLocalData() {
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
+    },
+    getTasks() {
+      let items = localStorage.getItem('tasks')
+      if (items) this.tasks = JSON.parse(items)
     }
   },
 })
