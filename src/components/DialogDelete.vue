@@ -8,23 +8,23 @@
     >      
       <v-card>
         <v-card-title class="text-h5">
-          Delete Task
+          Apagar tarefa
         </v-card-title>
         <v-card-text>
-          <p>Tem certeza que deseja excluir a tarefa?</p>
+          <p>Tem certeza que deseja excluir esta tarefa?</p>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="green darken-1"
-            text
+            color="red darken-1"
+            variant="elevated"
             @click="taskStore.toggleDelete"
           >
             Não
           </v-btn>
           <v-btn
-            color="green darken-1"
-            text
+            color="red darken-1"
+            variant="outlined"
             @click="taskStore.deleteTask"
           >
             Sim

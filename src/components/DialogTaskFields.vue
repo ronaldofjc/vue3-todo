@@ -17,8 +17,8 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="green darken-1"
-            text
+            color="primary-darken-1"
+            variant="elevated"
             @click="taskStore.toggleEdit()"
           >
             Salvar
