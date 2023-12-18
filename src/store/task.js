@@ -13,6 +13,7 @@ export const useTaskStore = defineStore('task', {
   },
   actions: {
     addTask() {
+      if (this.titleTaskCreating.length < 5) return
       this.tasks.push({
         title: this.titleTaskCreating
       })
