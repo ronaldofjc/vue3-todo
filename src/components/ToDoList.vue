@@ -1,7 +1,8 @@
 <template>
   <v-text-field
     clearable
-    label="Add Task"
+    :rules="rules"
+    label="Adicionar nova tarefa"
     v-model="taskStore.titleTaskCreating"
     @keyup.enter="taskStore.addTask"
   ></v-text-field>
@@ -15,6 +16,13 @@
   import { useTaskStore } from '@/store/task'
 
   const taskStore = useTaskStore()
+
+  const rules = [
+    value => {
+      if (!value || value.length >= 5) return true
+      return "Informe um título com mais de 5 caracteres para a tarefa!"
+    }
+  ]
 
   onMounted(() => {
     taskStore.getTasks()
