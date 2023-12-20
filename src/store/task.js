@@ -8,7 +8,7 @@ export const useTaskStore = defineStore('task', {
     titleTaskCreating: "",
     showDialogDelete: false,
     indexTaskSelected: 0,
-    showDialogTaskFields: false
+    showDialogTaskFields: false,
   }),
   getters: {
     double: state => state.count * 2,
@@ -17,7 +17,8 @@ export const useTaskStore = defineStore('task', {
     addTask() {
       if (this.titleTaskCreating.length < 5) return
       this.tasks.push({
-        title: this.titleTaskCreating
+        title: this.titleTaskCreating,
+        done: false
       })
       this.titleTaskCreating = ""
       this.saveLocalData()
@@ -45,6 +46,10 @@ export const useTaskStore = defineStore('task', {
     getTasks() {
       let items = localStorage.getItem('tasks')
       if (items) this.tasks = JSON.parse(items)
+    },
+    toggleDoneTask(index) {
+      this.tasks[index].done = !this.tasks[index].done
+      this.saveLocalData()
     }
   },
 })
