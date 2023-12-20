@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import { useAlertStore } from '@/store/alert'
+const alertStore = useAlertStore()
 
 export const useTaskStore = defineStore('task', {
   state: () => ({ 
@@ -19,6 +21,7 @@ export const useTaskStore = defineStore('task', {
       })
       this.titleTaskCreating = ""
       this.saveLocalData()
+      alertStore.notifyAlert("success", "Tarefa cadastrada com sucesso!")
     },
     toggleDelete(index) {
       this.showDialogDelete = !this.showDialogDelete
@@ -28,11 +31,13 @@ export const useTaskStore = defineStore('task', {
       this.tasks.splice(this.indexTaskSelected, 1)
       this.toggleDelete()
       this.saveLocalData()
+      alertStore.notifyAlert("error", "Tarefa removida!")
     },
     toggleEdit(index) {
       this.showDialogTaskFields = !this.showDialogTaskFields
       if (index != null) this.indexTaskSelected = index
       this.saveLocalData()
+      alertStore.notifyAlert("info", "Tarefa atualizada com sucesso!")
     },
     saveLocalData() {
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
