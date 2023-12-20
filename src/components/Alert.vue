@@ -3,12 +3,14 @@
     <v-alert
       :type="alertStore.typeAlert"
       :text="alertStore.description"
+      class="animate__animated animate__bounceInUp"
       closable
     ></v-alert>
   </div>
 </template>
 
 <script setup>
+  import 'animate.css';
   import { useAlertStore } from '@/store/alert'
 
   const alertStore = useAlertStore()
