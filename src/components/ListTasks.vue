@@ -42,15 +42,13 @@
         </template>
       </v-list-item>
     </v-list>
-    <DialogTaskFields 
-      :task="taskStore.tasks[taskStore.indexTaskSelected]" 
-    />
+    <DialogEdit/>
     <DialogDelete/>
   </div>
 </template>
 
 <script setup>
-  import DialogTaskFields from '@/components/DialogTaskFields.vue'
+  import DialogEdit from '@/components/DialogEdit.vue'
   import DialogDelete from '@/components/DialogDelete.vue'
   import { useTaskStore } from '@/store/task'
 
