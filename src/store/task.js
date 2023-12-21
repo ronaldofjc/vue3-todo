@@ -8,7 +8,11 @@ export const useTaskStore = defineStore('task', {
     titleTaskCreating: "",
     showDialogDelete: false,
     indexTaskSelected: 0,
-    showDialogTaskFields: false,
+    showDialogEdit: false,
+    updateTask: {
+      title: "",
+      done: false
+    }
   }),
   getters: {
     double: state => state.count * 2,
@@ -35,8 +39,18 @@ export const useTaskStore = defineStore('task', {
       alertStore.notifyAlert("error", "Tarefa removida!")
     },
     toggleEdit(index) {
-      this.showDialogTaskFields = !this.showDialogTaskFields
+      this.showDialogEdit = !this.showDialogEdit
       if (index != null) this.indexTaskSelected = index
+      let task = this.tasks[this.indexTaskSelected]
+      this.updateTask = {
+        title: task.title,
+        description: task.description
+      }
+    },
+    editTask() {
+      this.showDialogEdit = !this.showDialogEdit
+      this.tasks[this.indexTaskSelected].title = this.updateTask.title
+      this.tasks[this.indexTaskSelected].description = this.updateTask.description
       this.saveLocalData()
       alertStore.notifyAlert("info", "Tarefa atualizada com sucesso!")
     },

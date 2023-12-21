@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-dialog
-      v-model="taskStore.showDialogTaskFields"
+      v-model="taskStore.showDialogEdit"
       persistent
       min-width="400"
       max-width="700"
@@ -11,15 +11,15 @@
           Edit Task
         </v-card-title>
         <v-card-text>
-          <v-text-field v-model="props.task.title" label="Title"></v-text-field>
-          <v-text-field v-model="props.task.description" label="Description"></v-text-field>
+          <v-text-field v-model="taskStore.updateTask.title" label="Title"></v-text-field>
+          <v-text-field v-model="taskStore.updateTask.description" label="Description"></v-text-field>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
             color="primary-darken-1"
             variant="elevated"
-            @click="taskStore.toggleEdit()"
+            @click="taskStore.editTask()"
           >
             Salvar
           </v-btn>
@@ -30,13 +30,7 @@
 </template>
 
 <script setup>
-  import { defineProps } from 'vue'
   import { useTaskStore } from '@/store/task'
 
   const taskStore = useTaskStore()
-
-  const props = defineProps({
-    task: Object
-  })
-
 </script>
