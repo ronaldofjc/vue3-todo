@@ -25,8 +25,8 @@ export const useTaskStore = defineStore('task', {
         done: false
       })
       this.titleTaskCreating = ""
+      alertStore.notifyAlertCreated()
       this.saveLocalData()
-      alertStore.notifyAlert("success", "Tarefa cadastrada com sucesso!")
     },
     toggleDelete(index) {
       this.showDialogDelete = !this.showDialogDelete
@@ -35,8 +35,8 @@ export const useTaskStore = defineStore('task', {
     deleteTask() {
       this.tasks.splice(this.indexTaskSelected, 1)
       this.toggleDelete()
+      alertStore.notifyAlertDeleted()
       this.saveLocalData()
-      alertStore.notifyAlert("error", "Tarefa removida!")
     },
     toggleEdit(index) {
       this.showDialogEdit = !this.showDialogEdit
@@ -48,11 +48,12 @@ export const useTaskStore = defineStore('task', {
       }
     },
     editTask() {
+      if (this.updateTask.title.length < 5) return
       this.showDialogEdit = !this.showDialogEdit
       this.tasks[this.indexTaskSelected].title = this.updateTask.title
       this.tasks[this.indexTaskSelected].description = this.updateTask.description
+      alertStore.notifyAlertUpdated()
       this.saveLocalData()
-      alertStore.notifyAlert("info", "Tarefa atualizada com sucesso!")
     },
     saveLocalData() {
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
