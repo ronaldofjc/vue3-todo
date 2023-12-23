@@ -16,7 +16,8 @@
       </v-card-item>
 
       <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Este projeto apresenta uma forma de criar uma aplicação Frontend com Vue e Vuetify 3.
+        Tecnologias utilizadas: Vue 3, Vuetify 3, Pinia, Vue Router, AnimateCSS, Vite
       </v-card-text>
     </v-card>
   </div>
