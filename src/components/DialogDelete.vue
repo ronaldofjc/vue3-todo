@@ -3,8 +3,8 @@
     <v-dialog
       v-model="taskStore.showDialogDelete"
       persistent
-      min-width="400"
-      max-width="700"
+      width="700"
+      max-width="95%"
     >      
       <v-card>
         <v-card-title class="text-h5">
