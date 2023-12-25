@@ -1,11 +1,11 @@
 <template>
-  <div class="ma-4 text-center">
-    <h1 class="ma-4">Lista de Tarefas com Vue e Vuetify 3!</h1>
-    <p class="ma-4">Abaixo algumas tecnologias aprendidas.</p>
+  <div class="ma-2 text-center">
+    <h1 class="ma-2">Lista de Tarefas com Vue e Vuetify 3!</h1>
+    <p class="ma-2">Abaixo algumas tecnologias aprendidas.</p>
     <v-divider></v-divider>
   </div>
   <div></div>
-  <div class="ma-4 d-flex">
+  <div>
     <AboutCard
       v-for="(item, index) in items"
       :key="index"
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-  import AboutCard from "@/components/AboutCard.vue";
+  import AboutCard from "@/components/AboutCard2.vue";
 
   const items = [
     {
@@ -43,14 +43,14 @@
       image:
         "https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-dark-atom.svg",
       title: "Vuetify 3",
-      subtitle: "Incível biblioteca front-end",
+      subtitle: "Vue.js framework for building applications",
       text: "Learn more about what Vuetify is, how to create an application from scratch, browse API references, sample code, tutorials, and more.",
     },
     {
       image:
         "https://fineproxy.org/wp-content/uploads/2023/07/netlify.app_logo.png",
       title: "Netlify",
-      subtitle: "Netlify Embeds Serverless Functionality into Its Web",
+      subtitle: "Embeds Serverless Functionality into Its Web",
       text: "Netlify is the modern development platform for Enterprises to realize the speed, agility and performance of a scalable, composable web architecture.",
     },
     {

@@ -9,7 +9,7 @@
         class="pt-0.2"
       >
         <v-list>
-          <v-list-item
+          <v-list-item class="navigation-drawer"
             prepend-avatar="https://github.com/yurimarcon/avatars/blob/main/Colored/ToyFaces_Colored_BG_29.jpg?raw=true"
             title="Ronaldo Feitosa" subtitle="Lista de Tarefas">
           </v-list-item>
@@ -67,5 +67,9 @@ const items = [
 a {
   text-decoration: none;
   color: #505050;
+}
+.navigation-drawer {
+  font-weight: bold;
+  color: white;
 }
 </style>
