@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" width="250">
+  <v-card class="mx-auto" width="400">
     <v-img
       :src="props.image"
       height="200px"
